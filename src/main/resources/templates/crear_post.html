@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema X | Crear Post</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-dark font-weight-bold" href="#">
+          <i class="fas fa-user-circle fa-lg mr-1"></i> <span th:text="${usuario.nombre}">Usuario</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="#" class="brand-link">
+      <span class="brand-text font-weight-light ml-3"><b>Sistema</b> X</span>
+    </a>
+    <div class="sidebar">
+      <nav class="mt-4">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a th:href="@{/inicio}" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i><p>Inicio (Estadísticas)</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/posts/listado}" class="nav-link active">
+              <i class="nav-icon fas fa-table"></i><p>CRUD Posts</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/comentarios/listado}" class="nav-link">
+              <i class="nav-icon fas fa-comments"></i><p>CRUD Comentarios</p>
+            </a>
+          </li>
+          <li class="nav-header">SESIÓN</li>
+          <li class="nav-item">
+            <a th:href="@{/auth/login}" class="nav-link text-danger">
+              <i class="nav-icon fas fa-sign-out-alt"></i><p>Salir</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Crear Nueva Publicación</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8 mx-auto"> 
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Detalles de la publicación</h3>
+              </div>
+              
+              <form th:action="@{/posts/guardar}" th:object="${post}" method="post">
+                <div class="card-body">
+                  
+                  <div class="form-group">
+                    <label for="autor_id">ID del Autor</label>
+                    <input type="number" class="form-control" id="autor_id" th:field="*{autor_id}" placeholder="Ingresa el ID numérico" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="titulo">Título del Post</label>
+                    <input type="text" class="form-control" id="titulo" th:field="*{titulo}" placeholder="Ej. Bienvenidos al nuevo semestre" required maxlength="150">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="contenido">Contenido</label>
+                    <textarea class="form-control" id="contenido" th:field="*{contenido}" rows="6" placeholder="Escribe aquí el cuerpo de tu publicación..." required></textarea>
+                  </div>
+
+                </div>
+                
+                <div class="card-footer text-right">
+                  <a th:href="@{/posts/listado}" class="btn btn-secondary">Cancelar</a>
+                  <button type="submit" class="btn btn-success">Guardar Publicación</button>
+                </div>
+              </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <footer class="main-footer text-center">
+    <strong>Copyright &copy; 2026 <a href="#">Sistema X</a>.</strong> Todos los derechos reservados.
+  </footer>
+</div>
+
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
+</body>
+</html>

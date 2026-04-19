@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Sistema X | Editar Comentario</title>
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><span class="nav-link text-dark font-weight-bold" th:text="${usuario.nombre}">Usuario</span></li>
+    </ul>
+  </nav>
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="#" class="brand-link"><span class="brand-text font-weight-light ml-3"><b>Sistema</b> X</span></a>
+    <div class="sidebar">
+      <nav class="mt-4">
+        <ul class="nav nav-pills nav-sidebar flex-column">
+          <li class="nav-item"><a th:href="@{/comentarios/listado}" class="nav-link active"><i class="nav-icon fas fa-comments"></i><p>CRUD Comentarios</p></a></li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid"><h1>Editar Comentario</h1></div>
+    </section>
+
+    <section class="content">
+      <div class="card card-info w-50 mx-auto">
+        <div class="card-header"><h3 class="card-title">Modificar Comentario</h3></div>
+        
+        <form th:action="@{/comentarios/actualizar/{id}(id=${comentario.comentario_id})}" th:object="${comentario}" method="post">
+          <div class="card-body">
+            
+            <div class="form-group">
+              <label>ID del Post (Bloqueado)</label>
+              <input type="number" class="form-control" th:field="*{post_id}" readonly>
+            </div>
+
+            <div class="form-group">
+              <label>Nombre del Autor</label>
+              <input type="text" class="form-control" th:field="*{autor}" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Contenido</label>
+              <textarea class="form-control" th:field="*{contenido}" rows="4" required></textarea>
+            </div>
+
+          </div>
+          <div class="card-footer text-right">
+            <a th:href="@{/comentarios/listado}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-info">Actualizar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
+</body>
+</html>
