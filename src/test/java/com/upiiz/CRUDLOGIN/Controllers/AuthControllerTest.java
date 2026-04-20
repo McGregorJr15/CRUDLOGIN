@@ -30,7 +30,7 @@ public class AuthControllerTest {
         String boleta = "2020111111";
         String email = "test@test.com";
         String password = "password123";
-        String confirmPassword = "password456"; // ¡Diferente!
+        String confirmPassword = "password456";
 
         
         String result = authController.registerUser(boleta, email, password, confirmPassword, redirectAttributes);
