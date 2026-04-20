@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sistema X | Listado de Posts</title>
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -84,17 +86,25 @@
                     <a th:href="@{/posts/eliminar/{id}(id=${post.post_id})}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
+                <tr th:if="${#lists.isEmpty(posts)}">
+                  <td colspan="6" class="text-center py-4 text-muted">
+                    No hay publicaciones registradas. ¡Crea la primera!
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </section>
-  </div> <footer class="main-footer text-center">
+  </div> 
+  <footer class="main-footer text-center">
     <strong>Copyright &copy; 2026 <a href="#">Sistema X</a>.</strong> Todos los derechos reservados.
   </footer>
-</div> <script src="/plugins/jquery/jquery.min.js"></script>
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/dist/js/adminlte.min.js"></script>
+</div> 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 </body>
 </html>
