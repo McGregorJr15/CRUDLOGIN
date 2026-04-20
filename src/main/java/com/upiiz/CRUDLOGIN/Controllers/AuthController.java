@@ -6,6 +6,7 @@ import com.upiiz.CRUDLOGIN.Repositories.PasswordResetTokenRepository;
 import com.upiiz.CRUDLOGIN.Repositories.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,10 @@ public class AuthController {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    // VARIABLE NUEVA: Lee la URL base, si no la encuentra usa localhost
+    @Value("${app.url:http://localhost:8080}")
+    private String appUrl;
 
     @GetMapping("/login")
     public String login() {
@@ -130,7 +135,8 @@ public class AuthController {
         
         tokenRepository.save(miToken);
 
-        String resetUrl = "http://localhost:8080/auth/recoverpassword?token=" + nuevoTokenStr;
+        // CAMBIO AQUÍ: Ahora usa la variable dinámica appUrl en lugar de localhost hardcodeado
+        String resetUrl = appUrl + "/auth/recoverpassword?token=" + nuevoTokenStr;
 
         SimpleMailMessage mensaje = new SimpleMailMessage();
         mensaje.setTo(email);
